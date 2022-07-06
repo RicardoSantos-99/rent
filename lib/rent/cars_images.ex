@@ -1,4 +1,4 @@
-defmodule Rent.CarsImages do
+defmodule Rent.CarsImage do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -9,7 +9,7 @@ defmodule Rent.CarsImages do
 
   @required_params [:image_name]
 
-  schema "cars_images" do
+  schema "cars_image" do
     field :image_name, :string
 
     belongs_to :car, Car
