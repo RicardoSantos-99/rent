@@ -1,18 +1,18 @@
-defmodule Rent.Category do
+defmodule Rent.CarsImages do
   use Ecto.Schema
-
   import Ecto.Changeset
 
   alias Rent.Car
 
   @primary_key {:id, :binary_id, autogenerate: true}
-  @required_params [:name, :description]
+  @foreign_key_type :binary_id
 
-  schema "categories" do
-    field :name, :string
-    field :description, :string
+  @required_params [:image_name]
 
-    has_many :cars, Car
+  schema "cars_images" do
+    field :image_name, :string
+
+    belongs_to :car, Car
 
     timestamps()
   end
@@ -21,6 +21,5 @@ defmodule Rent.Category do
     struct
     |> cast(params, @required_params)
     |> validate_required(@required_params)
-    |> unique_constraint([:name])
   end
 end
