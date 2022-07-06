@@ -10,6 +10,10 @@ import Config
 config :rent,
   ecto_repos: [Rent.Repo]
 
+config :rent, Rent.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :rent, RentWeb.Endpoint,
   url: [host: "localhost"],

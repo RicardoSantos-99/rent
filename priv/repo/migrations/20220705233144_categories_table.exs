@@ -3,12 +3,12 @@ defmodule Rent.Repo.Migrations.CategoriesTable do
 
   def change do
     create table(:categories) do
-      add :name, :string,
-      add :description, :string,
+      add :name, :string
+      add :description, :string
 
       timestamps()
     end
 
-    create index(:categories, [:name])
+    create unique_index(:categories, [:name])
   end
 end
