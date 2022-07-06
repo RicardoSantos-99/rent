@@ -8,7 +8,7 @@ defmodule Rent.Categories.Create do
     |> handle_insert()
   end
 
-  defp handle_insert({:ok, %Category{} = result}), do: result
+  defp handle_insert({:ok, %Category{} = result}), do: {:ok, result}
 
   defp handle_insert({:error, result}) do
     {:error, Error.build(:bad_request, result)}

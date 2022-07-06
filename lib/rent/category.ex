@@ -8,6 +8,8 @@ defmodule Rent.Category do
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:name, :description]
 
+  @derive {Jason.Encoder, only: @required_params ++ [:id]}
+
   schema "categories" do
     field :name, :string
     field :description, :string

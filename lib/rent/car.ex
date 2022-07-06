@@ -17,6 +17,8 @@ defmodule Rent.Car do
     :category_id
   ]
 
+  @derive {Jason.Encoder, only: @required_params ++ [:id]}
+
   schema "cars" do
     field :name, :string
     field :description, :string

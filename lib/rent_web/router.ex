@@ -24,6 +24,12 @@ defmodule RentWeb.Router do
 
       live_dashboard "/dashboard", metrics: RentWeb.Telemetry
     end
+
+    scope "/api" do
+      pipe_through :api
+
+      post "/categories", RentWeb.CategoriesController, :create
+    end
   end
 
   # Enables the Swoosh mailbox preview in development.
