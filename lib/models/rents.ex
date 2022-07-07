@@ -2,7 +2,7 @@ defmodule Rent.Models.Rents do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rent.Models.{User, Car}
+  alias Rent.Models.{Car, User}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

@@ -2,8 +2,8 @@ defmodule Rent.Models.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rent.Models.Rents
   alias Ecto.Changeset
+  alias Rent.Models.Rents
 
   @primary_key {:id, :binary_id, autogenerate: true}
 

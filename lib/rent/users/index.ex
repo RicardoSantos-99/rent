@@ -1,8 +1,8 @@
 defmodule Rent.Users.Index do
-  alias Rent.{Error, Repo}
   alias Rent.Models.User
+  alias Rent.Repo
 
-  def call() do
+  def call do
     {:ok, Repo.all(User)}
   end
 end

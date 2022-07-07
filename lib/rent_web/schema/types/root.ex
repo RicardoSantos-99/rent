@@ -2,9 +2,9 @@ defmodule RentWeb.Schema.Types.Root do
   use Absinthe.Schema.Notation
 
   alias Crudry.Middlewares.TranslateErrors
-  alias RentWeb.Resolvers.User, as: UsersResolver
   alias RentWeb.Resolvers.Category, as: CategoriesResolver
   alias RentWeb.Resolvers.Specification, as: SpecificationsResolver
+  alias RentWeb.Resolvers.User, as: UsersResolver
   alias RentWeb.Schema.Types
 
   import_types Types.User
