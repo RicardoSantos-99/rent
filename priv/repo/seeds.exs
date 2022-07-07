@@ -18,30 +18,40 @@ sedan = %{name: "sedan", description: "porta malas grande"}
 picape = %{name: "picape", description: "carro com caçamba"}
 
 Rent.Categories.Create.call(usv)
-Rent.Categories.Create.call(hatch)
-Rent.Categories.Create.call(sedan)
+Rent.Categories.Create.call(picape)
+{:ok, %Category{id: hatch_id}} = Rent.Categories.Create.call(hatch)
+{:ok, %Category{id: sedan_id}} = Rent.Categories.Create.call(sedan)
 
-{:ok, %Category{id: id}} = Rent.Categories.Create.call(picape)
-
-car = %{
+uno = %{
   name: "Uno",
   description: "the economic car",
   daily_rate: Decimal.new("5.00"),
   available: true,
   license_plate: "xpt-5503",
   brand: "Fiat",
-  category_id: id
+  category_id: hatch_id
 }
 
-{:ok, %Car{id: car_id}} = Rent.Cars.Create.call(car)
+gol = %{
+  name: "Gol",
+  description: "family car",
+  daily_rate: Decimal.new("10.00"),
+  available: true,
+  license_plate: "zas-5542",
+  brand: "Volkswagen",
+  category_id: sedan_id
+}
 
-car_image = %{image_name: "uno.jpg", car_id: car_id}
-Rent.CarsImages.Create.call(car_image)
+{:ok, %Car{id: uno_id}} = Rent.Cars.Create.call(uno)
+{:ok, %Car{id: gol_id}} = Rent.Cars.Create.call(gol)
 
-# %{password_hash: hash} = Pbkdf2.add_hash("123123")
+uno_image = %{image_name: "uno.jpg", car_id: uno_id}
+gol_image = %{image_name: "gol.jpg", car_id: gol_id}
+Rent.CarsImages.Create.call(uno_image)
+Rent.CarsImages.Create.call(gol_image)
 
-user = %{
-  name: "john doe",
+john = %{
+  name: "john",
   email: "john@example.com",
   cpf: "12345678901",
   password: "123123123",
@@ -50,29 +60,51 @@ user = %{
   avatar: "avatar.jpg"
 }
 
-{:ok, %User{id: user_id}} = Rent.Users.Create.call(user)
+doe = %{
+  name: "doe",
+  email: "doe@example.com",
+  cpf: "12345678909",
+  password: "123123123",
+  driver_license: "123321123321",
+  admin: true,
+  avatar: "avatar.jpg"
+}
 
-rent = %{
-  user_id: user_id,
-  car_id: car_id,
+{:ok, %User{id: john_id}} = Rent.Users.Create.call(john)
+{:ok, %User{id: doe_id}} = Rent.Users.Create.call(doe)
+
+rent_uno = %{
+  user_id: john_id,
+  car_id: uno_id,
   start_date: ~D[2019-02-02],
   end_date: ~D[2019-02-02],
   expected_return_date: ~D[2019-02-02],
   total: Decimal.new("100.00")
 }
 
-Rent.Rentals.Create.call(rent)
-
-specification = %{
-  name: "manual",
-  description: "Manual driver license"
+rent_gol = %{
+  user_id: doe_id,
+  car_id: gol_id,
+  start_date: ~D[2019-02-02],
+  end_date: ~D[2019-02-02],
+  expected_return_date: ~D[2019-02-02],
+  total: Decimal.new("150.00")
 }
 
-{:ok, %Specification{id: specification_id}} = Rent.Specifications.Create.call(specification)
+Rent.Rentals.Create.call(rent_uno)
+Rent.Rentals.Create.call(rent_gol)
 
-specification_cars = %{
-  car_id: "a2f51b83-d316-4737-9bad-bda6396edb5b",
-  specification_id: "ab5b5bb7-424d-461a-b980-ca83227fa039"
-}
+specification_manual = %{name: "manual", description: "Manual car"}
+specification_automatic = %{name: "Automatic", description: "Automatic car"}
 
-Rent.SpecificationsCars.Create.call(specification_cars)
+{:ok, %Specification{id: specification_manual_id}} =
+  Rent.Specifications.Create.call(specification_manual)
+
+{:ok, %Specification{id: specification_automatic_id}} =
+  Rent.Specifications.Create.call(specification_automatic)
+
+specification_uno = %{car_id: uno_id, specification_id: specification_manual_id}
+specification_gol = %{car_id: gol_id, specification_id: specification_automatic_id}
+
+Rent.SpecificationsCars.Create.call(specification_uno)
+Rent.SpecificationsCars.Create.call(specification_gol)

@@ -3,7 +3,7 @@ defmodule Rent.Specification do
 
   import Ecto.Changeset
 
-  # alias Rent.SpecificationCar
+  alias Rent.SpecificationCar
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:name, :description]
@@ -14,7 +14,7 @@ defmodule Rent.Specification do
     field :name, :string
     field :description, :string
 
-    # has_many :specification_car, SpecificationCar
+    has_many :specification_car, SpecificationCar
 
     timestamps()
   end
