@@ -1,19 +1,15 @@
-defmodule Rent.CarsImage do
+defmodule Rent.SpecificationCar do
   use Ecto.Schema
+
+  alias Rent.{Car}
   import Ecto.Changeset
 
-  alias Rent.Car
-
   @primary_key {:id, :binary_id, autogenerate: true}
-  @foreign_key_type :binary_id
-
-  @required_params [:image_name, :car_id]
+  @required_params [:car_id]
 
   @derive {Jason.Encoder, only: @required_params ++ [:id]}
 
-  schema "cars_image" do
-    field :image_name, :string
-
+  schema "specifications_cars" do
     belongs_to :car, Car
 
     timestamps()

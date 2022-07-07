@@ -2,7 +2,7 @@ defmodule Rent.Car do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Rent.{Category, CarsImage}
+  alias Rent.{Category, CarsImage, Rents, SpecificationCar}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -28,7 +28,9 @@ defmodule Rent.Car do
     field :brand, :string
 
     belongs_to :category, Category
+    belongs_to :rentals, Rents
     has_many :images, CarsImage
+    has_many :specifications_car, SpecificationCar
 
     timestamps()
   end

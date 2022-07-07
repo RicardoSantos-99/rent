@@ -1,14 +1,14 @@
-defmodule Rent.Cars.Create do
-  alias Rent.{Car, Error, Repo}
+defmodule Rent.Rentals.Create do
+  alias Rent.{Error, Repo, Rents}
 
   def call(params) do
     params
-    |> Car.changeset()
+    |> Rents.changeset()
     |> Repo.insert()
     |> handle_insert()
   end
 
-  defp handle_insert({:ok, %Car{} = result}), do: {:ok, result}
+  defp handle_insert({:ok, %Rents{} = result}), do: {:ok, result}
 
   defp handle_insert({:error, result}) do
     {:error, Error.build(:bad_request, result)}
