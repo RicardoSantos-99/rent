@@ -1,18 +1,31 @@
-defmodule Rent.SpecificationCar do
+defmodule Rent.Models.Rents do
   use Ecto.Schema
-
-  alias Rent.{Car, Specification}
   import Ecto.Changeset
+
+  alias Rent.Models.{User, Car}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
-  @required_params [:car_id, :specification_id]
+
+  @required_params [
+    :user_id,
+    :car_id,
+    :start_date,
+    :end_date,
+    :expected_return_date,
+    :total
+  ]
 
   @derive {Jason.Encoder, only: @required_params ++ [:id]}
 
-  schema "specifications_cars" do
+  schema "rentals" do
+    field :start_date, :date
+    field :end_date, :date
+    field :expected_return_date, :date
+    field :total, :decimal
+
+    belongs_to :user, User
     belongs_to :car, Car
-    belongs_to :specification, Specification
 
     timestamps()
   end

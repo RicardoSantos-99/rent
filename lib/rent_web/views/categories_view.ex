@@ -1,7 +1,7 @@
 defmodule RentWeb.CategoriesView do
   use RentWeb, :view
 
-  alias Rent.Category
+  alias Rent.Models.Category
 
   def render("create.json", %{category: %Category{} = category}) do
     %{

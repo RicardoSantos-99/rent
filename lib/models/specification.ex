@@ -1,20 +1,20 @@
-defmodule Rent.Category do
+defmodule Rent.Models.Specification do
   use Ecto.Schema
 
   import Ecto.Changeset
 
-  alias Rent.Car
+  alias Rent.Models.SpecificationCar
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @required_params [:name, :description]
 
   @derive {Jason.Encoder, only: @required_params ++ [:id]}
 
-  schema "categories" do
+  schema "specifications" do
     field :name, :string
     field :description, :string
 
-    has_many :cars, Car
+    has_many :specification_car, SpecificationCar
 
     timestamps()
   end

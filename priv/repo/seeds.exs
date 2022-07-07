@@ -10,7 +10,7 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Rent.{Category, Car, User, Specification}
+alias Rent.Models.{Category, Car, User, Specification}
 
 usv = %{name: "suv", description: "veículo utilitário esportivo"}
 hatch = %{name: "hatch", description: "carro compacto"}

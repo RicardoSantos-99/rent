@@ -1,5 +1,6 @@
 defmodule Rent.Categories.Create do
-  alias Rent.{Category, Error, Repo}
+  alias Rent.{Error, Repo}
+  alias Rent.Models.Category
 
   def call(params) do
     params

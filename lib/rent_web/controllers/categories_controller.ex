@@ -1,7 +1,7 @@
 defmodule RentWeb.CategoriesController do
   use RentWeb, :controller
 
-  alias Rent.Category
+  alias Rent.Models.Category
   alias RentWeb.FallbackController
 
   action_fallback FallbackController

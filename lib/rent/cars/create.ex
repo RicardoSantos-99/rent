@@ -1,5 +1,6 @@
 defmodule Rent.Cars.Create do
-  alias Rent.{Car, Error, Repo}
+  alias Rent.{Error, Repo}
+  alias Rent.Models.Car
 
   def call(params) do
     params

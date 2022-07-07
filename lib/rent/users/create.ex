@@ -1,5 +1,6 @@
 defmodule Rent.Users.Create do
-  alias Rent.{Error, Repo, User}
+  alias Rent.{Error, Repo}
+  alias Rent.Models.User
 
   def call(params) do
     changeset = User.changeset(params)

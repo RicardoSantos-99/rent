@@ -1,20 +1,20 @@
-defmodule Rent.CarsImage do
+defmodule Rent.Models.Category do
   use Ecto.Schema
+
   import Ecto.Changeset
 
-  alias Rent.Car
+  alias Rent.Models.Car
 
   @primary_key {:id, :binary_id, autogenerate: true}
-  @foreign_key_type :binary_id
-
-  @required_params [:image_name, :car_id]
+  @required_params [:name, :description]
 
   @derive {Jason.Encoder, only: @required_params ++ [:id]}
 
-  schema "cars_image" do
-    field :image_name, :string
+  schema "categories" do
+    field :name, :string
+    field :description, :string
 
-    belongs_to :car, Car
+    has_many :cars, Car
 
     timestamps()
   end
@@ -23,5 +23,6 @@ defmodule Rent.CarsImage do
     struct
     |> cast(params, @required_params)
     |> validate_required(@required_params)
+    |> unique_constraint([:name])
   end
 end

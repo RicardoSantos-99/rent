@@ -28,7 +28,8 @@ defmodule RentWeb.Router do
     scope "/api" do
       pipe_through :api
 
-      post "/categories", RentWeb.CategoriesController, :create
+      forward "/graphql", Absinthe.Plug, schema: RentWeb.Schema
+      forward "/graphiql", Absinthe.Plug.GraphiQL, schema: RentWeb.Schema
     end
   end
 
