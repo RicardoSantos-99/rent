@@ -47,7 +47,6 @@ defmodule RentWeb.Schema.Types.Root do
       middleware TranslateErrors
     end
 
-
     field :create_category, type: :category do
       arg :input, non_null(:create_category_input)
 
@@ -61,7 +60,6 @@ defmodule RentWeb.Schema.Types.Root do
       resolve &CategoriesResolver.delete/2
       middleware TranslateErrors
     end
-
 
     field :create_specification, type: :specification do
       arg :input, non_null(:create_specification_input)
